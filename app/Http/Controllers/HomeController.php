@@ -42,12 +42,12 @@ class HomeController extends Controller
         elseif($user->status == 'admin')
         {
             $courriers_reçus_sec = courriers_entrants::count();
-            $courriers_envoyes = courriers_sortants::count();
+            $courriers_envoyes_sec = courriers_sortants::count();
             $secretaires = secretaires::all();
             $users = user::all();
             $admin = admins::where ('id_users', $user->id)->first();
 
-            return view ('admin.dashboard',compact('admin','courriers_reçus_sec','courriers_envoyes','secretaires','users'));
+            return view ('admin.dashboard',compact('admin','courriers_reçus_sec','courriers_envoyes_sec','secretaires','users'));
 
         }
 
@@ -55,10 +55,11 @@ class HomeController extends Controller
         {
             $courriers_reçus = courriers_entrants::all();
             $courriers_reçus_sec = courriers_entrants::count();
+            $courriers_envoyes_sec = courriers_sortants::count();
             $courriers_envoyes = courriers_sortants::all();
             $secretaire = secretaires::where ('id_users', $user->id)->first();
 
-            return view ('secretaire.dashboard',compact('secretaire','courriers_reçus','courriers_envoyes', 'courriers_reçus_sec'));
+            return view ('secretaire.dashboard',compact('secretaire','courriers_reçus','courriers_envoyes', 'courriers_reçus_sec', 'courriers_envoyes_sec'));
 
         }
 
