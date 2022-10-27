@@ -92,9 +92,13 @@ class CourriersEntrantskouraController extends Controller
      * @param  \App\Models\courriers_entrants  $courriers_entrants
      * @return \Illuminate\Http\Response
      */
-    public function edit(courriers_entrants $courriers_entrants)
+
+
+    public function edit($id)
     {
-        //
+        $courriers_entrants = courriers_entrants::findOrFail($id);
+
+        return view('edit', compact('courriers_entrants'));
     }
 
     /**
@@ -106,7 +110,7 @@ class CourriersEntrantskouraController extends Controller
      */
     public function update(Request $request,$id )
     {
-        $validatedata = courriers_entrants::find($id);
+        $validatedata = courriers_entrants::findOrFail($id);
         $validatedata->num_reference = $request->input('num_reference');
         $validatedata->objet = $request->input('objet');
         $validatedata->expediteur = $request->input('expediteur');

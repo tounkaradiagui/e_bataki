@@ -21,11 +21,11 @@ class DashboardController extends Controller
 
 
         $courriers_reçus_sec = courriers_entrants::count();
-        $courriers_envoyes = courriers_sortants::count();
+        $courriers_envoyes_sec = courriers_sortants::count();
         $secretaires = secretaires::all();
         $users = user::all();
         //$secretaires = User::where('status == secretaire')->count();
-        return view('admin/dashboard',compact('courriers_reçus_sec','courriers_envoyes','secretaires','users'));
+        return view('admin/dashboard',compact('courriers_reçus_sec','courriers_envoyes_sec','secretaires','users'));
 
     }
 

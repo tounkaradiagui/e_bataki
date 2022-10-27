@@ -45,7 +45,7 @@
 
                 <form action="{{ route('sendcourriertodestinataire', $liste->id) }}" class="px-md-2" method="POST">
                     @csrf
-                    @method('PATCH')
+                    @method('PUT')
                         {{-- Try --}}                      
                         <div class="row">
                             <div class="col mb-4">

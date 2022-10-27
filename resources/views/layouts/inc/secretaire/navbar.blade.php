@@ -53,7 +53,7 @@
               </a>
               <a class="dropdown-item">
                 <div class="item-thumbnail">
-                    <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
+                    <img src="{{asset('uploads/profile/ .Auth::user()->image')}}" alt="image" class="profile-pic">
                 </div>
                 <div class="item-content flex-grow">
                   <h6 class="ellipsis font-weight-normal"> Johnson
@@ -115,18 +115,22 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-              <img src="{{asset('uploads/profile/' .Auth::user()->image)}}" alt="profile"/>
+            <img src="{{asset('uploads/profile/' .Auth::user()->image)}}" alt="image" class="profile-pic">
               <span class="nav-profile-name">{{ Auth::user()->prenom }}  {{ Auth::user()->nom }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="mdi mdi-settings text-primary"></i>
-                Settings
+                Paramètres
+              </a>
+              <a class="dropdown-item" href="{{url('secretaire/mon-profile')}}">
+                <i class="mdi mdi-settings text-primary"></i>
+                Profile
               </a>
               <a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                  <i class="mdi mdi-logout text-primary"></i>{{ __('Logout') }}
+                  <i class="mdi mdi-logout text-primary"></i>{{ __('Déconnexion') }}
               </a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

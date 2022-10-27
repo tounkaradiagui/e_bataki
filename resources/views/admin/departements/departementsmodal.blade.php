@@ -147,7 +147,7 @@
                 
                 <tr>
                     <td scope="row" class="masque">{{$depart->id}}</td>
-                    <th scope="row">{{$depart->nom}}</td>
+                    <td scope="row">{{$depart->nom}}</td>
                 
                     <td class="text-white">
                     <a href="#" class="edit btn btn-primary btn-sm" >Modifier</a> 

@@ -29,7 +29,7 @@ class SecretaireController extends Controller
     {
         $user = Auth::user();
         $secretaire = secretaires::where('id_users', $user->id)->first();
-        $mescourriers = courriers_entrants::where('id_secretaire',$secretaire->id)->orderBy('id','desc')->get();
+        $mescourriers = courriers_entrants::where('id_secretaire',$user->id)->orderBy('id','desc')->get();
         return view('admin.secretaire.courentrantsecretaire', compact('user', 'mescourriers'));
     }
 // Envoyer au destinataire

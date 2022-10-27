@@ -50,9 +50,9 @@
                     <td><a href="{{ url('courriers/entrants/'.$crs->pdf_courriers) }}" download>Fichier joint:</a></td>
 
                     <td>
-                      <a href="{{ url('courriers/entrants/'.$crs->pdf_courriers) }}" view class="btn btn-primary">Voir</a>
-                      <button class="btn btn-success edit" data-bs-toggle="modal" data-bs-target="#modifcoursortants">Mod</button>
-                      <button class="btn btn-danger edit" data-bs-toggle="modal" data-bs-target="#deleteModal">Supp</button>
+                      <a href="{{ url('courriers/entrants/'.$crs->pdf_courriers) }}" target="_blank"  view class="btn btn-primary">Voir</a>
+                      <button class="btn btn-success edit" >Mod</button>
+                      <button class="btn btn-danger delete">Supp</button>
                       
                     </td>
                 </tr>
@@ -190,15 +190,15 @@
 
     
            <!-- debut Modal modifier courriers -->
-          <div class="modal fade" id="modifcoursortants" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="editer" tabindex="-1" aria-labelledby="modifcoursortants" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Ajouter utilisateur</h5>
+                  <h5 class="modal-title" id="modifcoursortants">Ajouter utilisateur</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/courriers_sortants" id="modformcour" method="POST">
+                    <form action="admin/courrierentrandd" id="modformcour" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="modal-body">							
@@ -231,29 +231,56 @@
             </div>
           </div>
           <!-- fin modal modifier -->
+
+        <div class="modal fade" id="modifier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier departement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                      <form action= "admin/courriers_entrants" id="modifcourrier" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('PUT') }}
+                        <div class="modal-body">							
+                            <div class="mb-3">
+                                <label for="" class="form-label">Nom </label>
+                                <input type="text" class="form-control" id="nom" name="nom" >
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Modifier</button>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
     
           <!-- debut modal supprimer -->
           <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirmer la suppression</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                        <form action="/courriers_sortants" id="deleteForm" method="POST">
-                            {{ csrf_field() }}
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <h6>Voulez-vous vraiment supprimer cette ligne?</h6>
-                                </div>
-                                <input type="hidden" name="_method" value="DELETE">
-                            </div>  
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
-                                <button type="submit" class="btn btn-danger">Oui</button>
-                            </div>
-                        </form>
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmer la suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                  <form action="admin/courrierentrandd" id="deleteForm" method="POST">
+                      {{ csrf_field() }}
+                      <div class="modal-body">
+                          <div class="mb-3">
+                              <h6>Voulez-vous vraiment supprimer cette ligne?</h6>
+                          </div>
+                          <input type="hidden" name="_method" value="DELETE">
+                      </div>  
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+                          <button type="submit" class="btn btn-danger">Oui</button>
+                      </div>
+                  </form>
+              </div>
             </div>
           </div>
           <!-- fin modal supprimer -->
@@ -266,8 +293,10 @@
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>  -->
     
+
+
      <script>
         $(document).ready( function () 
         {
@@ -282,5 +311,49 @@
             $('.masque').hide();
         } );
     </script>
+
+    
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+    
+    var table = $('#datatable').DataTable();
+    
+    
+    table.on('click','.edit', function() {
+    
+    
+        $tr = $(this).closest('tr');
+        if ($($tr).hasClass('child')){
+            $tr = $tr.prev('.parent');
+        }
+        var data = table.row($tr).data();
+        console.log(data);
+    
+        $('#num_reference').val(data[1]);
+    
+        $('#modifcourrier').attr('action', 'admin/courrierentrandd'+data[0]);
+        $('#modifier').modal('show');
+    });
+
+    // Start Delete//
+    table.on('click','.delete', function()
+     {
+        $tr = $(this).closest('tr');
+            if ($($tr).hasClass('child'))
+            {
+                $tr = $tr.prev('.parent');
+            }
+
+        var data = table.row($tr).data();
+        console.log(data);
+        $('#deleteForm').attr('action', 'admin/courrierentrandd'+data[0]);
+        $('#deleteModal').modal('show');
+    });
+
+  //End Delete//
+
+});
+</script>
 
 @endsection

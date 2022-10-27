@@ -59,8 +59,8 @@ Route::prefix('admin')->group(function() {
 Route::prefix('users')->group(function() {
     Route::get('dashboard', [App\Http\Controllers\users\DashboardUsersController::class, 'index']);
 
-    Route::get('mon-profile', [App\Http\Controllers\users\ProfileController\ProfileController::class, 'index'] )->name('mon-profile');
-    Route::post('mon-profile-update', [App\Http\Controllers\users\ProfileController\ProfileController::class, 'store'] )->name('mon-profile');
+    Route::get('mon-profile', [App\Http\Controllers\users\ProfileController::class, 'index'] )->name('mon-profile');
+    Route::post('mon-profile-update', [App\Http\Controllers\users\ProfileController::class, 'store'] )->name('mon-profile');
 
   
 });
@@ -69,13 +69,14 @@ Route::prefix('secretaire')->group(function() {
     Route::get('dashboard', [App\Http\Controllers\secretaires\DashboardController::class, 'index']);
     Route::get('secretaire',[App\Http\Controllers\Admin\SecretaireController::class, 'voircourrier'])->name('mescourriers');
     Route::get('envoyercourrierformulaire/{id}',[App\Http\Controllers\Admin\SecretaireController::class, 'voirform'])->name('sendformuser');
-    Route::patch('sendusercourrier/{id}',[App\Http\Controllers\Admin\SecretaireController::class, 'sendcingcourr'])->name('sendcourriertodestinataire');
+    Route::post('sendusercourrier/{id}',[App\Http\Controllers\Admin\SecretaireController::class, 'sendcingcourr'])->name('sendcourriertodestinataire');
+    
     Route::get('courriers_sortants_list',[App\Http\Controllers\secretaires\CourriersSortantsController::class, 'index'])->name('courriersSortants');
     Route::post('courriers_sortants_ajout',[App\Http\Controllers\secretaires\CourriersSortantsController::class, 'store'])->name('enregistrercourriersSortants');
     Route::post('envoiuserformulaire',[App\Http\Controllers\Admin\SecretaireController::class, 'voircourrier'])->name('sendcourriertodestinataire');
 
-    Route::get('mon-profile', [App\Http\Controllers\secretaires\ProfileController\ProfileController::class, 'index'] )->name('mon-profile');
-    Route::post('mon-profile-update', [App\Http\Controllers\secretaires\ProfileController\ProfileController::class, 'store'] )->name('mon-profile');
+    Route::get('mon-profile', [App\Http\Controllers\secretaires\ProfileController::class, 'index'] )->name('mon-profile');
+    Route::post('mon-profile-update', [App\Http\Controllers\secretaires\ProfileController::class, 'store'] )->name('mon-profile');
 
  
 });
